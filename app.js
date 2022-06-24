@@ -1,5 +1,6 @@
 const express = require("express");
 const { default: mongoose } = require("mongoose");
+const methodOverride = require('method-override')
 const fileUpload = require("express-fileupload");
 const ejs = require("ejs");
 const path = require("path");
@@ -11,7 +12,6 @@ const app = express();
 //connect DB
 mongoose.connect("mongodb://localhost/photo-memories");
 
-const port = 3011;
 
 //Template Engine
 app.set("view engine", "ejs");
@@ -21,6 +21,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(fileUpload());
+app.use(methodOverride('_method'))
 
 //Routes
 app.get("/", async (req, res) => {
@@ -65,6 +66,21 @@ app.post("/photos", async (req, res) => {
   );
 });
 
+app.get("/photos/edit/:id", async (req, res) => {
+  const photo = await Photo.findOne({_id:req.params.id})
+  res.render("edit", { photo});
+});
+
+app.put("/photos/:id", async(req, res) => {
+  const photo = await Photo.findOne({_id:req.params.id})
+  photo.description = req.body.description
+  photo.save()
+
+  res.redirect(`/photos/${req.params.id}`)
+
+});
+
+const port = 3011;
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
