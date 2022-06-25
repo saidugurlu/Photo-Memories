@@ -77,6 +77,7 @@ app.get("/photos/edit/:id", async (req, res) => {
 app.put("/photos/:id", async (req, res) => {
   const photo = await Photo.findOne({ _id: req.params.id });
   photo.description = req.body.description;
+  photo.title = req.body.title;
   photo.save();
 
   res.redirect(`/photos/${req.params.id}`);
