@@ -4,6 +4,8 @@
 
 [demo](https://photo-memories-app.herokuapp.com/)
 
+![reference image](/public/img/readme01.png)
+
 ## Tools
 
 - Bootstrap, CSS
