@@ -9,7 +9,7 @@ const pageController = require("./controllers/pageController");
 const app = express();
 
 //connect DB
-mongoose.connect("mongodb://localhost/photo-memories");
+mongoose.connect("mongodb+srv://msu:nhWPsX3sxX7fAWnV@cluster0.hztc0j3.mongodb.net/?retryWrites=true&w=majority");
 
 //Template Engine
 app.set("view engine", "ejs");
@@ -38,7 +38,7 @@ app.get("/add", pageController.getAddPage);
 
 app.get("/photos/edit/:id", pageController.getEditPage);
 
-const port = 3011;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
