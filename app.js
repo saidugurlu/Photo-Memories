@@ -1,5 +1,4 @@
 const express = require("express");
-const dotenv = require("dotenv");
 const { default: mongoose } = require("mongoose");
 const methodOverride = require("method-override");
 const fileUpload = require("express-fileupload");
@@ -11,7 +10,7 @@ const app = express();
 dotenv.config();
 
 //connect DB
-mongoose.connect(process.env.MONGODB_CONNECTION);
+mongoose.connect("mongodb+srv://msu:nhWPsX3sxX7fAWnV@cluster0.hztc0j3.mongodb.net/?retryWrites=true&w=majority");
 
 //Template Engine
 app.set("view engine", "ejs");
