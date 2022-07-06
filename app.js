@@ -7,7 +7,6 @@ const photoController = require("./controllers/photoControllers");
 const pageController = require("./controllers/pageController");
 
 const app = express();
-dotenv.config();
 
 //connect DB
 mongoose.connect("mongodb+srv://msu:nhWPsX3sxX7fAWnV@cluster0.hztc0j3.mongodb.net/?retryWrites=true&w=majority");
